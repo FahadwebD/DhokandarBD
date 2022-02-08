@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import './SignIn.css'
+import useFirebas from '../../hooks/useFirebase';
 
 const SignIn = () => {
     const icon = <FontAwesomeIcon icon={faGoogle} />
+    const {signInWithGoogle , user} = useFirebas()
     return (
        
 
@@ -25,7 +27,7 @@ const SignIn = () => {
                     <div className="row mb-4 px-3">
                         <h6 className="mb-0 mr-4 mt-2">Sign in with</h6>
                         <div className="facebook text-center me-3">
-                            <div >{icon}</div>
+                            <div onClick={signInWithGoogle} >{icon}</div>
                         </div>
                         <div className="twitter text-center me-3">
                             <div className="fa fa-twitter">{icon}</div>
@@ -47,7 +49,8 @@ const SignIn = () => {
                     <div className="row px-3 mb-4">
                         <div className="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" className="custom-control-input"/> <label for="chk1" className="custom-control-label text-sm">Remember me</label> </div> <a href="/" className="ml-auto mb-0 text-sm">Forgot Password?</a>
                     </div>
-                    <div className="row mb-3 px-3"> <button type="submit" className="btn btn-blue text-center">Login</button> </div>
+                    <div className="row mb-3 px-3"><Link to='/home'> <button onClick={signInWithGoogle} type="submit" className="btn btn-blue text-center">Login</button> </Link>
+                    </div>
                     <div className="row mb-4 px-3"> <small className="font-weight-bold">Don't have an account? <Link to="/reg"className="text-danger ">Register</Link></small> </div>
                 </div>
             </div>
